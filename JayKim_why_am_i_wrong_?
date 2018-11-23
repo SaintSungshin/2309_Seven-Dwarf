@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	const int SIZE = 9;
+	int list[SIZE];
+	int total = 0;
+
+	for (int i = 0;i < SIZE;i++) //9개의 난쟁이 키를 받고 total에 모두의 합을 저장
+	{
+		cin >> list[i];
+		total += list[i];
+	}
+	int minusValue = total - 100; //추가된 난쟁이들의 키의 합을 구함
+
+	for (int i = 0;i < SIZE;i++) // 두 명씩 더해서 munusValue값이 나오면 그 두명의 키(배열) 값을 0으로 설정.
+	{
+		for (int j = 0;j < SIZE;j++)
+		{
+			if ((list[i] + list[j]) == minusValue)
+			{
+				list[i], list[j] = 0;
+				break;
+			}
+		}
+	}
+
+	for (int i = 0; i < SIZE-1; i++)
+	{
+		for (int j = i+1; j < SIZE; j++)
+		{
+			if (list[i] > list[j])
+			{
+				int temp = list[i];
+				list[i] = list[j];
+				list[i + 1] = temp;
+			}
+		}
+	}
+
+	for (int i = 2; i < SIZE-2; i++)
+		cout << list[i] << endl;
+
+	system("pause");
+	return 0;
+}
